@@ -1,0 +1,76 @@
+/* src/components/Game.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .info {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .score,
+  .message {
+    font-size: 1.25rem;
+    color: #333;
+    margin-top: 1rem;
+  }
+  
+  .message {
+    color: #d9534f;
+  }
+  
+  .won {
+    color: #5cb85c;
+  }
+  
+  .lost {
+    color: #d9534f;
+  }
+  
