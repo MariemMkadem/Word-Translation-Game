@@ -18,10 +18,9 @@ export const Game: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1  className={styles.title}>Word Translation Game</h1>
-      <p  className={styles.info}>French Word: {wordData.word}</p>
-      <p  className={styles.info}>Hint: {wordData.firstLetter} ({wordData.length} letters)</p>
-      <form  className={styles.form} onSubmit={handleSubmit}>
+      <p className={styles.info}>French Word: {wordData.word}</p>
+      <p className={styles.info}>Hint: {wordData.firstLetter} ({wordData.length} letters)</p>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"
           className={styles.input}
@@ -29,10 +28,10 @@ export const Game: React.FC = () => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter translation"
         />
-        <button type="submit"  className={styles.button}>Submit</button>
+        <button type="submit" className={styles.button}>Submit</button>
       </form>
-      <p  className={styles.score}>Score: {score}</p>
-      <p className={`${styles.message} ${score <= 0 ? `${styles.lost}` : ''} ${score >= 20 ? 'game-won' : ''}`}>
+      <p className={styles.score}>Score: {score}</p>
+      <p className={`${styles.message} ${score <= 0 ? `${styles.lost}` : ''} ${score >= 20 ? `${styles.won}` : ''}`}>
         {message}
       </p>
       {score <= 0 && <p className={styles.lost}>You lost!</p>}
