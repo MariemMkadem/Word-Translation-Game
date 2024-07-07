@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/header";
+import { Leaderboard } from '../../components/leaderboard';
 import { GameIntro } from "../../components/game-intro";
 import styles from "./home.module.scss";
 
@@ -20,6 +21,7 @@ export const Home: React.FC = () => {
           Start Game
         </button>
       </section>
+      <Leaderboard />
     </div>
   );
 };

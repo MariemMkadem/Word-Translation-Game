@@ -4,6 +4,7 @@ import { Home } from "./pages/home";
 import { Game } from "./components/game-input";
 import { GameProvider } from "./context/GameContext";
 
+
 const App = () => {
   return (
     <GameProvider>

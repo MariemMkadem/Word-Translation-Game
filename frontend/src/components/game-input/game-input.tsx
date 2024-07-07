@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useGame } from "../../context/GameContext";
 import styles from "./game-input.module.scss";
 
@@ -6,6 +7,7 @@ export const Game: React.FC = () => {
   const { wordData, points, message, checkTranslation, gameOver, resetGame } =
     useGame();
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,6 +31,10 @@ export const Game: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <button className={styles.backButton} onClick={() => navigate(-1)}>
+        ← Back
+      </button>
+
       <p className={styles.info}>French Word: {wordData.word}</p>
       <p className={styles.info}>
         Hint: {wordData.firstLetter} ({wordData.length} letters)
