@@ -8,7 +8,7 @@ export interface WordData {
 export interface GameContextProps {
   points: number;
   setPoints: React.Dispatch<React.SetStateAction<number>>;
-  wordData: Pick<WordData, 'word' | 'firstLetter' | 'length' | 'translation' >;
+  wordData: Pick<WordData, "word" | "firstLetter" | "length" | "translation">;
   checkTranslation: (input: string) => boolean;
   gameOver: boolean;
   resetGame: () => void;
