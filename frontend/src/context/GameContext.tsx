@@ -30,6 +30,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   }, [fetchWord]);
 
   const checkTranslation = (input: string): boolean => {
+    console.log('wordData.translation', wordData.translation)
     if (input.toLowerCase() === wordData.translation.toLowerCase()) {
       setPoints(prevPoints => prevPoints + 1);
       setMessage('Correct!');
@@ -46,6 +47,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const resetGame = useCallback(() => {
     setPoints(10);
     setGameOver(false);
+    setMessage('');
     fetchWord();
   }, [fetchWord]);
 

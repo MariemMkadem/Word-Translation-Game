@@ -1,68 +1,70 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 70vh;
-    width: 100vw;
-    background-color: #f0f8ff;
-    font-family: Arial, sans-serif;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-  
-  .info {
-    font-size: 1.25rem;
-    color: #555;
-    margin-bottom: 1rem;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input {
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-  }
-  
-  .button {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
-  .score,
-  .message {
-    font-size: 1.25rem;
-    color: #333;
-    margin-top: 1rem;
-  }
-  
-  .message {
-    color: #d9534f;
-  }
-  
-  .won {
-    color: #5cb85c;
-  }
-  
-  .lost {
-    color: #d9534f;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 100vw;
+  background-color: #f0f8ff;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.info {
+  font-size: 1.25rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  padding: 10px;
+  font-size: 1rem;
+  margin: 10px 0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #21a1f1;
+}
+
+.score {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.message {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.lost {
+  color: red;
+}
+
+.won {
+  color: green;
+}
+
+.gameOver {
+  text-align: center;
+  margin-top: 20px;
+}

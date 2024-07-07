@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGame } from '../../context/GameContext';
 import styles from './game-input.module.scss';
 
 export const Game: React.FC = () => {
-  const { wordData, points, message, checkTranslation, gameOver } = useGame();
+  const { wordData, points, message, checkTranslation, gameOver, resetGame } = useGame();
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -11,6 +11,16 @@ export const Game: React.FC = () => {
     checkTranslation(input);
     setInput('');
   };
+
+  useEffect(() => {
+    if (gameOver) {
+      if (points <= 0) {
+        alert('Game Over! You lost!');
+      } else if (points >= 20) {
+        alert('Congratulations! You won!');
+      }
+    }
+  }, [gameOver, points]);
 
   if (!wordData.word) {
     return <div>Loading...</div>;
@@ -34,8 +44,12 @@ export const Game: React.FC = () => {
       <p className={`${styles.message} ${points <= 0 ? `${styles.lost}` : ''} ${points >= 20 ? `${styles.won}` : ''}`}>
         {message}
       </p>
-      {points <= 0 && <p className={styles.lost}>You lost!</p>}
-      {points >= 20 && <p className={styles.won}>You won!</p>}
+      {gameOver && (
+        <div className={styles.gameOver}>
+          <p>{points <= 0 ? 'You lost!' : 'Congratulations! You won!'}</p>
+          <button className={styles.button} onClick={resetGame}>Play Again</button>
+        </div>
+      )}
     </div>
   );
 };
