@@ -1,61 +1,56 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, useCallback } from 'react';
+import { GameContextProps, WordData } from '../types/game'
 import { getWord } from '../services/gameService';
 
-interface GameContextProps {
-  points: number;
-  setPoints: React.Dispatch<React.SetStateAction<number>>;
-  word: string;
-  firstLetter: string;
-  wordLength: number;
-  checkTranslation: (input: string) => boolean;
-  gameOver: boolean;
-  resetGame: () => void;
-}
 
 const GameContext = createContext<GameContextProps | undefined>(undefined);
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [points, setPoints] = useState(10);
-  const [word, setWord] = useState('');
-  const [firstLetter, setFirstLetter] = useState('');
-  const [wordLength, setWordLength] = useState(0);
+  const [wordData, setWordData] = useState<Pick<WordData, 'word' | 'firstLetter' | 'length' | 'translation'>>({
+    word: '',
+    firstLetter: '',
+    length: 0,
+    translation: ''
+  });
   const [gameOver, setGameOver] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    if (points <= 0 || points >= 20) {
-      setGameOver(true);
-    } else {
-      setGameOver(false);
-    }
+    setGameOver(points <= 0 || points >= 20);
   }, [points]);
 
-  useEffect(() => {
-    const fetchWord = async () => {
-      const { word, firstLetter, length } = await getWord();
-      setWord(word);
-      setFirstLetter(firstLetter);
-      setWordLength(length);
-    };
-    fetchWord();
+  const fetchWord = useCallback(async () => {
+    const { word, firstLetter, length, translation } = await getWord();
+    setWordData({ word, firstLetter, length, translation });
   }, []);
 
-  const checkTranslation = (input: string) => {
-    if (input.toLowerCase() === word.toLowerCase()) {
-      setPoints(points + 1);
+  useEffect(() => {
+    fetchWord();
+  }, [fetchWord]);
+
+  const checkTranslation = (input: string): boolean => {
+    if (input.toLowerCase() === wordData.translation.toLowerCase()) {
+      setPoints(prevPoints => prevPoints + 1);
+      setMessage('Correct!');
+      fetchWord();
       return true;
     } else {
-      setPoints(points - 1);
+      setPoints(prevPoints => prevPoints - 1);
+      setMessage('Incorrect!');
+      fetchWord();
       return false;
     }
-  };
+  }
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     setPoints(10);
     setGameOver(false);
-  };
+    fetchWord();
+  }, [fetchWord]);
 
   return (
-    <GameContext.Provider value={{ points, setPoints, word, firstLetter, wordLength, checkTranslation, gameOver, resetGame }}>
+    <GameContext.Provider value={{ points, setPoints, wordData, checkTranslation, gameOver, resetGame, message, setMessage }}>
       {children}
     </GameContext.Provider>
   );

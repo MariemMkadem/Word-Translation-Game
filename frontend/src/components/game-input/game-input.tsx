@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useGame } from '../../hooks/useGame';
-import styles from "./game-input.module.scss";
+import { useGame } from '../../context/GameContext';
+import styles from './game-input.module.scss';
 
 export const Game: React.FC = () => {
-  const { wordData, score, message, checkTranslation } = useGame();
+  const { wordData, points, message, checkTranslation, gameOver } = useGame();
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -12,7 +12,7 @@ export const Game: React.FC = () => {
     setInput('');
   };
 
-  if (!wordData) {
+  if (!wordData.word) {
     return <div>Loading...</div>;
   }
 
@@ -30,14 +30,13 @@ export const Game: React.FC = () => {
         />
         <button type="submit" className={styles.button}>Submit</button>
       </form>
-      <p className={styles.score}>Score: {score}</p>
-      <p className={`${styles.message} ${score <= 0 ? `${styles.lost}` : ''} ${score >= 20 ? `${styles.won}` : ''}`}>
+      <p className={styles.score}>Score: {points}</p>
+      <p className={`${styles.message} ${points <= 0 ? `${styles.lost}` : ''} ${points >= 20 ? `${styles.won}` : ''}`}>
         {message}
       </p>
-      {score <= 0 && <p className={styles.lost}>You lost!</p>}
-      {score >= 20 && <p className={styles.win}>You won!</p>}
+      {points <= 0 && <p className={styles.lost}>You lost!</p>}
+      {points >= 20 && <p className={styles.won}>You won!</p>}
     </div>
   );
 };
-
 
