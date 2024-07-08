@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, FormEvent,FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGame } from "../../context/GameContext";
 import styles from "./game-input.module.scss";
 
-export const Game: React.FC = () => {
+export const Game: FC = () => {
   const { wordData, points, message, checkTranslation, gameOver, resetGame } =
     useGame();
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e:FormEvent) => {
     e.preventDefault();
     checkTranslation(input);
     setInput("");

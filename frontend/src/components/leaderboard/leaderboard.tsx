@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { getLeaderboard } from '../../services/gameService';
-import styles from './leaderboard.module.scss';
- 
+import React, { useState, useEffect } from "react";
+import { getLeaderboard } from "../../services/gameService";
+import styles from "./leaderboard.module.scss";
+
 export const Leaderboard: React.FC = () => {
   const [scores, setScores] = useState([]);
 
